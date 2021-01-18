@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArray(WORD_LIST, wordModelList.toTypedArray())
-//        outState.putStringArray(TRANSLATED_WORD_LIST, fullmsglist.toTypedArray())
         Log.e(TAG, "onSaveInstanceState: $wordList")
     }
 
@@ -48,8 +47,6 @@ class MainActivity : AppCompatActivity() {
             adapter.updateList(wordModelList)
         }
         savedInstanceState.getStringArray(TRANSLATED_WORD_LIST)?.toMutableList()?.let {
-//            fullmsglist = it
-
         }
     }
 
@@ -66,25 +63,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onItemClick(word: WordModel) {
-        if (word.translation.isNotEmpty()){
+        if (word.translation.isNotEmpty()) {
             showAlertDialog(word.translation)
-        }else{
+        } else {
             adapter.deleteWord(word)
         }
     }
 
     @Suppress("DEPRECATION")
-    private fun translateWord(word: String){
+    private fun translateWord(word: String) {
         val request = NetworkAsync(Consts.URL.plus(word)).execute()
         request.get()?.let {
             if (it.isNotEmpty()) {
                 val translation = JSONObject(it).getString("translation")
                 val originalWord = JSONObject(it).getString("originalWord")
-                val wordModel: WordModel = WordModel(originalWord = originalWord, translation = translation)
+                val wordModel: WordModel =
+                    WordModel(originalWord = originalWord, translation = translation)
                 wordModelList.add(wordModel)
                 adapter.addWord(wordModel)
             } else {
-                adapter.addWord(WordModel(word,""))
+                adapter.addWord(WordModel(word, ""))
             }
         }
     }

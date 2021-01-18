@@ -1,6 +1,5 @@
 package geekstudio.com.timelysoftandroidtask.models
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
