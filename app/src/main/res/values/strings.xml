@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TimelySoftAndroidTask</string>
+    <string name="hint_enter_word">Enter the word</string>
+    <string name="text_btn_add_word">Add word</string>
+    <string name="text_btn_show_msg">Show full message</string>
+    <string name="text_alert_title">Translation</string>
+    <string name="text_alert_positive">Ok</string>
+</resources>
